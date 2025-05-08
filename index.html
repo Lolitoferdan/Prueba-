@@ -14,24 +14,24 @@
       margin: 0;
       padding: 0;
       font-family: 'Arial', sans-serif;
-      background-color: #121212;
+      background-color: black;
       color: white;
       overflow-x: hidden;
     }
 
-   .parallax {
-  position: relative;
-  background: url('Corrido.png') no-repeat center center fixed;
-  background-size: cover;
-  height: 100vh;
-  width: 100%;
-  z-index: -1;
-}
-
+    /* Banner estático */
+    .banner {
+      width: 100%;
+      height: 400px;  /* Puedes ajustar el alto según prefieras */
+      background: url('Corrido.png') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      margin-bottom: 20px;
+    }
 
     /* Animaciones y Transiciones */
     .glow {
-      text-shadow: 0 0 20px rgba(0, 0, 255, 1), 0 0 30px rgba(0, 0, 255, 1), 0 0 40px rgba(0, 0, 255, 1);
+      text-shadow: 0 0 20px rgba(255, 0, 64, 1), 0 0 30px rgba(255, 0, 64, 1), 0 0 40px rgba(255, 0, 64, 1);
     }
 
     h1 {
@@ -39,12 +39,12 @@
       margin-top: 10vh;
       animation: fadeIn 2s ease-in-out;
       text-align: center;
-      color: #00b3ff;
+      color: #ff0040;
     }
 
     h2 {
       font-size: 3rem;
-      color: #00b3ff;
+      color: #ff0040;
       text-transform: uppercase;
       margin-top: 20px;
       text-align: center;
@@ -60,8 +60,8 @@
 
     /* Efecto Glow */
     .glow-text {
-      color: #00b3ff;
-      text-shadow: 0 0 20px #00b3ff, 0 0 30px #00b3ff, 0 0 40px #00b3ff;
+      color: #ff0040;
+      text-shadow: 0 0 20px #ff0040, 0 0 30px #ff0040, 0 0 40px #ff0040;
     }
 
     /* Cuadro de canciones */
@@ -70,15 +70,15 @@
       max-width: 900px;
       margin: 50px auto;
       padding: 30px;
-      border: 2px solid #00b3ff;
+      border: 2px solid #ff0040;
       border-radius: 15px;
-      box-shadow: 0 0 25px rgba(0, 179, 255, 1);
+      box-shadow: 0 0 25px rgba(255, 0, 64, 1);
       background: rgba(0, 0, 0, 0.8);
     }
 
     .cancion-boton {
       background: rgba(0, 0, 0, 0.9);
-      border: 3px solid #00b3ff;
+      border: 3px solid #ff0040;
       padding: 18px;
       margin: 12px 0;
       font-size: 2em;
@@ -86,12 +86,12 @@
       cursor: pointer;
       border-radius: 10px;
       text-align: center;
-      box-shadow: 0 0 15px #00b3ff;
+      box-shadow: 0 0 15px #ff0040;
       transition: 0.3s;
     }
 
     .cancion-boton:hover {
-      background: #00b3ff;
+      background: #ff0040;
       transform: scale(1.1);
     }
 
@@ -101,18 +101,18 @@
       margin: 40px auto;
       padding: 20px 30px;
       font-size: 2em;
-      background: #00b3ff;
+      background: #ff0040;
       border: 3px solid white;
       border-radius: 15px;
       color: white;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 0 20px #00b3ff;
+      box-shadow: 0 0 20px #ff0040;
       transition: background 0.3s, transform 0.3s;
     }
 
     .boton-video:hover {
-      background: #0099cc;
+      background: #ff3366;
       transform: scale(1.1);
     }
 
@@ -125,7 +125,7 @@
       border-radius: 10px;
       padding: 15px;
       background: rgba(0, 0, 0, 0.7);
-      box-shadow: 0 0 20px #00b3ff;
+      box-shadow: 0 0 20px #ff0040;
     }
 
     /* Video */
@@ -136,7 +136,7 @@
       margin: 40px auto;
       border-radius: 10px;
       background: rgba(0, 0, 0, 0.8);
-      box-shadow: 0 0 30px rgba(0, 179, 255, 1);
+      box-shadow: 0 0 30px rgba(255, 0, 64, 1);
     }
 
     /* Animación de Fade In */
@@ -154,7 +154,7 @@
       display: none;
       width: 100%;
       height: 5px;
-      background-color: #00b3ff;
+      background-color: #ff0040;
       margin: 20px 0;
       animation: pulse 1s infinite;
     }
@@ -172,7 +172,7 @@
 
     .content-wrapper h3 {
       font-size: 3em;
-      color: #00b3ff;
+      color: #ff0040;
       text-align: center;
     }
 
@@ -182,7 +182,7 @@
       max-width: 1000px;
       margin: 30px auto;
       border-radius: 15px;
-      box-shadow: 0 0 30px rgba(0, 179, 255, 1);
+      box-shadow: 0 0 30px rgba(255, 0, 64, 1);
     }
 
     /* Menú interactivo */
@@ -211,25 +211,25 @@
     }
 
     .menu ul li:hover {
-      color: #00b3ff;
+      color: #ff0040;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
 
+  <!-- Banner estático -->
+  <div class="banner"></div>
+
   <!-- Menú de Navegación -->
   <div class="menu">
     <ul>
       <li onclick="window.location.href='#inicio'">Inicio</li>
-      <li onclick="window.location.href='#canciones'">Porno Corridos</li>
+      <li onclick="window.location.href='#canciones'">Canciones</li>
       <li onclick="window.location.href='contacto.html'">Contacto</li>
       <li onclick="window.location.href='#video'">Ver Video</li>
     </ul>
   </div>
-
-  <!-- Fondo Parallax -->
-  <div class="parallax" id="inicio"></div>
 
   <!-- Contenido principal -->
   <div class="content-wrapper">
@@ -239,66 +239,17 @@
 
     <!-- Cuadro de Canciones -->
     <div class="cuadro-canciones" id="canciones">
-      <div class="cancion-boton" onclick="toggleReproductor('audio1', 'reproductor1')">Escuchar Porno Corrido 1</div>
-      <div class="cancion-boton" onclick="toggleReproductor('audio2', 'reproductor2')">Escuchar Porno Corrido 2</div>
-      <div class="cancion-boton" onclick="toggleReproductor('audio3', 'reproductor3')">Escuchar Porno Corrido 3</div>
-
-      <!-- Reproductores de Canciones -->
-      <div class="reproductor" id="reproductor1">
-        <audio id="audio1" controls>
-          <source src="(intro hablada) (1).mp3" type="audio/mp3">
-          Tu navegador no soporta el elemento de audio.
-        </audio>
-      </div>
-      <div class="reproductor" id="reproductor2">
-        <audio id="audio2" controls>
-          <source src="Vato.mp3" type="audio/mp3">
-          Tu navegador no soporta el elemento de audio.
-        </audio>
-      </div>
-      <div class="reproductor" id="reproductor3">
-        <audio id="audio3" controls>
-          <source src="como.mp3" type="audio/mp3">
-          Tu navegador no soporta el elemento de audio.
-        </audio>
-      </div>
+      <div class="cancion-boton" onclick="playAudio('corrido1.mp3')">Corrido 1</div>
+      <div class="cancion-boton" onclick="playAudio('corrido2.mp3')">Corrido 2</div>
+      <div class="cancion-boton" onclick="playAudio('corrido3.mp3')">Corrido 3</div>
     </div>
-
-    <!-- Botón para Video -->
-    <div class="boton-video" onclick="toggleVideo()">Ver Video</div>
 
     <!-- Video -->
     <div class="video-box" id="video">
-      <video controls>
-        <source src="corrido_video.mp4" type="video/mp4">
-        Tu navegador no soporta este video.
-      </video>
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
     </div>
+
   </div>
-
-  <!-- Script para interacción -->
-  <script>
-    function toggleReproductor(audioId, reproductorId) {
-      var audio = document.getElementById(audioId);
-      var reproductor = document.getElementById(reproductorId);
-      if (audio.paused) {
-        audio.play();
-        reproductor.style.display = "block";
-      } else {
-        audio.pause();
-        reproductor.style.display = "none";
-      }
-    }
-
-    function toggleVideo() {
-      var videoBox = document.getElementById("video");
-      if (videoBox.style.display === "none") {
-        videoBox.style.display = "block";
-      } else {
-        videoBox.style.display = "none";
-      }
-    }
-  </script>
 
 </body>
 </html>
