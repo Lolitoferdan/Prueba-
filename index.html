@@ -5,62 +5,124 @@
   <title>Chuchitos con Flow</title>
   <style>
     body {
-      background-color: #111;
-      color: #fff;
+      margin: 0;
+      background-color: #0a0a0a;
       font-family: 'Arial', sans-serif;
+      color: #fff;
+    }
+
+    header img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      padding: 30px;
+    }
+
+    .main-text {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 50px;
+      flex-wrap: wrap;
     }
 
     .izquierda {
-      max-width: 50%;
+      max-width: 55%;
     }
 
     .derecha {
-      text-align: right;
       max-width: 40%;
-      font-size: 1.1rem;
+      text-align: right;
     }
 
-    h1 {
-      font-size: 2rem;
-      color: #00ffcc;
+    .cancion-title {
+      margin-top: 40px;
+      font-size: 2.5rem;
+      color: #ffcc00;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cancion-title:hover {
+      transform: scale(1.1);
+      color: #ff6699;
+    }
+
+    .audio-player {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .audio-player.active {
+      max-height: 100px;
     }
 
     audio {
-      margin-top: 10px;
       width: 100%;
+      margin-top: 10px;
     }
 
-    .ultima-cancion {
-      margin-top: 30px;
-      font-style: italic;
-      color: #ffcc00;
+    .video-section {
+      margin-top: 50px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #000;
     }
   </style>
 </head>
 <body>
 
-  <div class="izquierda">
-    <h1>Somos Chuchitos con Flow</h1>
-    <p>Dylan, Steven, Diego, Alejandro, Nelson, Salvador y el mero Pilli</p>
-    <p><strong>Somos la mera verga.</strong></p>
+  <!-- 🖼️ Banner estilo canal de YouTube -->
+  <header>
+    <img src="Corrido.png" alt="Banner">
+  </header>
 
-    <div class="ultima-cancion">Última canción:</div>
-    <audio controls autoplay loop>
-      <source src="(intro hablada) (1).mp3" type="audio/mpeg">
-      Tu navegador no soporta el audio.
-    </audio>
+  <div class="container">
+
+    <!-- 🧠 Texto principal -->
+    <div class="main-text">
+      <div class="izquierda">
+        <h1>Somos Chuchitos con Flow</h1>
+        <p>Dylan, Steven, Diego, Alejandro, Nelson, Salvador y el mero Pilli</p>
+        <p><strong>Somos la mera verga.</strong></p>
+
+        <!-- 🎵 Canción con animación -->
+        <div class="cancion-title" onclick="toggleAudio()">🎶 Porno Corrido</div>
+        <div id="audioPlayer" class="audio-player">
+          <audio controls>
+            <source src="porno-corrido.mp3" type="audio/mpeg">
+            Tu navegador no soporta el audio.
+          </audio>
+        </div>
+      </div>
+
+      <!-- 😤 Texto para Roberto -->
+      <div class="derecha">
+        <p>Esta página fue creada con el propósito de</p>
+        <p><strong>mandar a la verga a Roberto</strong></p>
+        <p>por robar novias 😤</p>
+        <p>¿Qué pedo XDDD</p>
+      </div>
+    </div>
+
+    <!-- 🎬 Video abajo -->
+    <div class="video-section">
+      <video src="0506.mp4" controls autoplay muted loop></video>
+    </div>
+
   </div>
 
-  <div class="derecha">
-    <p>Esta página fue creada con el propósito de</p>
-    <p><strong>mandar a la verga a Roberto</strong></p>
-    <p>por robar novias 😤</p>
-    <p>¿Qué pedo XDDD</p>
-  </div>
+  <script>
+    function toggleAudio() {
+      const audioDiv = document.getElementById("audioPlayer");
+      audioDiv.classList.toggle("active");
+    }
+  </script>
 
 </body>
 </html>
