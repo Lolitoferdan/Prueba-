@@ -2,13 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chuchitos con Flow</title>
+
+  <!-- Aquí agregas el favicon (el ícono que aparece en la pestaña del navegador) -->
+  <link rel="icon" href="https://github.com/Lolitoferdan/Prueba-/raw/main/pene.png" type="image/png">
+
   <style>
+    /* Fondo de espectro de audio */
     body {
       margin: 0;
-      background-color: #0a0a0a;
+      background-color: #111;
       font-family: 'Arial', sans-serif;
       color: #fff;
+      overflow-x: hidden;
     }
 
     header img {
@@ -25,6 +32,7 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      position: relative;
     }
 
     .izquierda {
@@ -36,10 +44,16 @@
       text-align: right;
     }
 
-    /* Estilo del nombre de la canción con cuadro */
+    /* Estilo para el título grande */
+    h1 {
+      font-size: 4rem;
+      color: #ffcc00;
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+
     .cancion-title {
-      margin-top: 40px;
-      font-size: 2.5rem;
+      font-size: 3rem;
       color: #ffcc00;
       background-color: #222;
       padding: 10px 20px;
@@ -47,6 +61,7 @@
       transition: transform 0.3s ease, background-color 0.3s ease;
       cursor: pointer;
       display: inline-block;
+      margin-top: 40px;
     }
 
     .cancion-title:hover {
@@ -70,23 +85,43 @@
       margin-top: 10px;
     }
 
-    /* Estilo del video más pequeño y debajo de texto de Roberto */
+    /* Video interactivo */
     .video-section {
       margin-top: 50px;
       max-width: 80%;
       margin-left: auto;
       margin-right: auto;
+      display: none;
+    }
+
+    .video-section.active {
+      display: block;
     }
 
     video {
       width: 100%;
-      max-width: 600px; /* Ajusta el tamaño del video */
+      max-width: 600px;
       border-radius: 10px;
       box-shadow: 0 0 15px #000;
+    }
+
+    /* Fondo con espectro de audio (estático por ahora, lo hacemos después con JS) */
+    #audio-spectrogram {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+      display: block;
     }
   </style>
 </head>
 <body>
+
+  <!-- Espectro de audio (se va a manejar con JS después) -->
+  <div id="audio-spectrogram"></div>
 
   <!-- 🖼️ Banner estilo canal de YouTube -->
   <header>
@@ -105,7 +140,7 @@
         <!-- 🎵 Canción con animación y cuadro -->
         <div class="cancion-title" onclick="toggleAudio()">🎶 Porno Corrido</div>
         <div id="audioPlayer" class="audio-player">
-          <audio controls>
+          <audio id="audio" controls>
             <source src="porno-corrido.mp3" type="audio/mpeg">
             Tu navegador no soporta el audio.
           </audio>
@@ -118,21 +153,45 @@
         <p><strong>mandar a la verga a Roberto</strong></p>
         <p>por robar novias 😤</p>
         <p>¿Qué pedo XDDD</p>
+
+        <!-- Botón para mostrar el video -->
+        <button onclick="toggleVideo()">Ver video</button>
       </div>
     </div>
 
     <!-- 🎬 Video abajo (más pequeño) -->
-    <div class="video-section">
+    <div class="video-section" id="videoSection">
       <video src="0506.mp4" controls autoplay muted loop></video>
     </div>
 
   </div>
 
   <script>
+    // Toggle del reproductor de audio
     function toggleAudio() {
       const audioDiv = document.getElementById("audioPlayer");
       audioDiv.classList.toggle("active");
     }
+
+    // Toggle del video
+    function toggleVideo() {
+      const videoSection = document.getElementById("videoSection");
+      videoSection.classList.toggle("active");
+    }
+
+    // Generación de espectro de audio
+    const audioElement = document.getElementById('audio');
+    const spectrogram = document.getElementById('audio-spectrogram');
+
+    audioElement.onplay = () => {
+      // Aquí agregaríamos el espectro de audio que reaccione
+      spectrogram.style.background = "linear-gradient(to right, #ff6699, #ffcc00, #00ccff)";
+    };
+
+    audioElement.onpause = () => {
+      // Espectro de fondo cuando el audio está en pausa
+      spectrogram.style.background = "rgba(0, 0, 0, 0.5)";
+    };
   </script>
 
 </body>
