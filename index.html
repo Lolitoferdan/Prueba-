@@ -223,8 +223,8 @@
     <ul>
       <li onclick="window.location.href='#inicio'">Inicio</li>
       <li onclick="window.location.href='#canciones'">Canciones</li>
+      <li onclick="window.location.href='contacto.html'">Contacto</li>
       <li onclick="window.location.href='#video'">Ver Video</li>
-      <li onclick="window.location.href='#contacto'">Contacto</li>
     </ul>
   </div>
 
@@ -242,31 +242,31 @@
 
     <!-- Cuadro de Canciones -->
     <div class="cuadro-canciones" id="canciones">
-      <div class="cancion-boton" onclick="toggleReproductor('audio1', 'reproductor1')">PORNO CORRIDO</div>
-      <div class="cancion-boton" onclick="toggleReproductor('audio2', 'reproductor2')">CANCION 2</div>
-      <div class="cancion-boton" onclick="toggleReproductor('audio3', 'reproductor3')">CANCION 3</div>
-    </div>
+      <div class="cancion-boton" onclick="toggleReproductor('audio1', 'reproductor1')">Escuchar Canción 1</div>
+      <div class="cancion-boton" onclick="toggleReproductor('audio2', 'reproductor2')">Escuchar Canción 2</div>
+      <div class="cancion-boton" onclick="toggleReproductor('audio3', 'reproductor3')">Escuchar Canción 3</div>
 
-    <!-- Reproductores de Audio -->
-    <div class="reproductor" id="reproductor1">
-      <audio id="audio1" controls>
-        <source src="(intro hablada) (1).mp3" type="audio/mp3">
-        Tu navegador no soporta el elemento de audio.
-      </audio>
-    </div>
+      <!-- Reproductores de Canciones -->
+      <div class="reproductor" id="reproductor1">
+        <audio id="audio1" controls>
+          <source src="(intro hablada) (1).mp3" type="audio/mp3">
+          Tu navegador no soporta el elemento de audio.
+        </audio>
+      </div>
 
-    <div class="reproductor" id="reproductor2">
-      <audio id="audio2" controls>
-        <source src="corrido2.mp3" type="audio/mp3">
-        Tu navegador no soporta el elemento de audio.
-      </audio>
-    </div>
+      <div class="reproductor" id="reproductor2">
+        <audio id="audio2" controls>
+          <source src="corrido2.mp3" type="audio/mp3">
+          Tu navegador no soporta el elemento de audio.
+        </audio>
+      </div>
 
-    <div class="reproductor" id="reproductor3">
-      <audio id="audio3" controls>
-        <source src="corrido3.mp3" type="audio/mp3">
-        Tu navegador no soporta el elemento de audio.
-      </audio>
+      <div class="reproductor" id="reproductor3">
+        <audio id="audio3" controls>
+          <source src="corrido3.mp3" type="audio/mp3">
+          Tu navegador no soporta el elemento de audio.
+        </audio>
+      </div>
     </div>
 
     <!-- Botón para Ver Video -->
@@ -279,10 +279,8 @@
         Tu navegador no soporta el elemento de video.
       </video>
     </div>
-
   </div>
 
-  <!-- Script -->
   <script>
     // Funciones para manejar la reproducción de música
     function toggleReproductor(audioId, reproductorId) {
