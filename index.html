@@ -5,25 +5,14 @@
   <title>Chuchitos con Flow</title>
   <link rel="icon" href="pene.png" type="image/png">
   <style>
-    /* Fondo con imagen y capa oscura */
+    /* Fondo negro */
     body {
       margin: 0;
       padding: 0;
-      background: url('1.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background-color: black;
       font-family: 'Arial', sans-serif;
       color: white;
       position: relative;
-      z-index: 1;
-    }
-
-    body::before {
-      content: "";
-      background: rgba(0, 0, 0, 0.5); /* oscurecer fondo */
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
     }
 
     h1 {
@@ -83,12 +72,24 @@
     .cuadro-cancion:hover {
       transform: scale(1.1);
     }
+
+    /* Banner con la imagen de "Corrido.png" */
+    .banner {
+      width: 100%;
+      height: 250px;
+      background: url('Corrido.png') no-repeat center center;
+      background-size: cover;
+      margin-bottom: 40px;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Banner -->
+  <div class="banner"></div>
+
   <h1>Somos Chuchitos con Flow</h1>
-  <p>Dylan, Steven, Diego, Alejandro, Nelson, Salvador y el mero Pilli somos la mera verga</p>
+  <p>Dylan Steven, Diego Alejandro, Nelson Salvador, Ernesto Antonio y el pinche mero vergas: el Pilli</p>
   <p>Esta página fue creada con el propósito de mandar a la verga a Roberto por robar novias. ¿Qué pedo? XDDD</p>
 
   <!-- Botón de canción -->
