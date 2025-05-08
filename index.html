@@ -13,6 +13,10 @@
       font-family: 'Arial', sans-serif;
       color: white;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     h1 {
@@ -29,7 +33,59 @@
       text-shadow: 2px 2px 5px black;
     }
 
-    .boton-cancion, .boton-video {
+    /* Cuadro de canciones */
+    .cuadro-canciones {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      max-width: 600px;
+      margin: 20px 0;
+      border: 2px solid white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 20px #ff0040;
+    }
+
+    .cancion-boton {
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid white;
+      padding: 15px;
+      font-size: 1.5em;
+      color: white;
+      margin: 10px 0;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #ff0040;
+    }
+
+    .cancion-boton:hover {
+      transform: scale(1.1);
+      background-color: #ff0040;
+    }
+
+    /* Reproductor */
+    .reproductor {
+      display: none;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    /* Cuadro de video */
+    .video-box {
+      display: none;
+      margin-top: 20px;
+      width: 80%;
+      max-width: 800px;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #ff0040;
+    }
+
+    /* Botón de video */
+    .boton-video {
       display: block;
       width: max-content;
       margin: 20px auto;
@@ -42,62 +98,39 @@
       cursor: pointer;
       text-align: center;
       transition: transform 0.3s ease, background 0.2s ease;
+      box-shadow: 0 0 10px #ff0040;
     }
 
-    .boton-cancion:hover, .boton-video:hover {
+    .boton-video:hover {
       transform: scale(1.1);
       background: #ff3366;
     }
 
-    .reproductor, .video-box {
-      display: none;
-      margin: 20px auto;
-      width: 80%;
-      max-width: 600px;
+    /* Efecto glow */
+    .glow {
+      text-shadow: 0 0 20px #ff0040, 0 0 30px #ff0040, 0 0 40px #ff0040, 0 0 50px #ff0040;
     }
 
-    .cuadro-cancion {
-      border: 4px solid white;
-      padding: 15px;
-      text-align: center;
-      width: max-content;
-      margin: auto;
-      font-size: 2em;
-      font-weight: bold;
-      box-shadow: 0 0 15px #ff0040;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .cuadro-cancion:hover {
-      transform: scale(1.1);
-    }
-
-    /* Banner con la imagen de "Corrido.png" */
-    .banner {
-      width: 100%;
-      height: 250px;
-      background: url('Corrido.png') no-repeat center center;
-      background-size: cover;
-      margin-bottom: 40px;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Banner -->
-  <div class="banner"></div>
+  <!-- Título -->
+  <h1 class="glow">Somos Chuchitos con Flow</h1>
+  <p class="glow">Dylan Steven, Diego Alejandro, Nelson Salvador, Ernesto Antonio y el pinche mero vergas: el Pilli</p>
+  <p class="glow">Esta página fue creada con el propósito de mandar a la verga a Roberto por robar novias. ¿Qué pedo? XDDD</p>
 
-  <h1>Somos Chuchitos con Flow</h1>
-  <p>Dylan Steven, Diego Alejandro, Nelson Salvador, Ernesto Antonio y el pinche mero vergas: el Pilli</p>
-  <p>Esta página fue creada con el propósito de mandar a la verga a Roberto por robar novias. ¿Qué pedo? XDDD</p>
-
-  <!-- Botón de canción -->
-  <div class="cuadro-cancion" onclick="document.getElementById('reproductor1').style.display='block'; document.getElementById('audio1').play();">
-    PORNO CORRIDO
+  <!-- Cuadro de canciones -->
+  <div class="cuadro-canciones">
+    <div class="cancion-boton" onclick="toggleReproductor('audio1', 'reproductor1')">
+      PORNO CORRIDO
+    </div>
+    <div class="cancion-boton" onclick="toggleReproductor('audio2', 'reproductor2')">
+      OTRA CANCION
+    </div>
   </div>
 
-  <!-- Reproductor de audio -->
+  <!-- Reproductor de audio 1 (PORNO CORRIDO) -->
   <div class="reproductor" id="reproductor1">
     <audio id="audio1" controls>
       <source src="(intro hablada) (1).mp3" type="audio/mpeg">
@@ -105,18 +138,43 @@
     </audio>
   </div>
 
-  <!-- Botón de video -->
-  <div class="cuadro-cancion" onclick="document.getElementById('videoBox').style.display='block';">
+  <!-- Reproductor de audio 2 (OTRA CANCION) -->
+  <div class="reproductor" id="reproductor2">
+    <audio id="audio2" controls>
+      <source src="otra-cancion.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio.
+    </audio>
+  </div>
+
+  <!-- Botón para ver el video -->
+  <div class="boton-video" onclick="document.getElementById('videoBox').style.display='block';">
     VER VIDEO
   </div>
 
-  <!-- Video -->
+  <!-- Cuadro de video -->
   <div class="video-box" id="videoBox">
     <video width="100%" controls>
       <source src="0506.mp4" type="video/mp4">
       Tu navegador no soporta video.
     </video>
   </div>
+
+  <!-- Script para mostrar el reproductor de audio al hacer clic -->
+  <script>
+    function toggleReproductor(audioId, reproductorId) {
+      // Mostrar o esconder el reproductor de audio correspondiente
+      const reproductor = document.getElementById(reproductorId);
+      const audio = document.getElementById(audioId);
+
+      if (reproductor.style.display === 'none' || reproductor.style.display === '') {
+        reproductor.style.display = 'block';
+        audio.play();
+      } else {
+        reproductor.style.display = 'none';
+        audio.pause();
+      }
+    }
+  </script>
 
 </body>
 </html>
