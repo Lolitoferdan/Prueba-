@@ -1,230 +1,184 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chuchitos con Flow</title>
-
-  <!-- Aquí agregas el favicon (el ícono que aparece en la pestaña del navegador) -->
-  <link rel="icon" href="https://github.com/Lolitoferdan/Prueba-/raw/main/pene.png" type="image/png">
-
+  <link rel="icon" type="image/png" href="pene.png" />
   <style>
     body {
       margin: 0;
-      background-color: #111;
-      font-family: 'Arial', sans-serif;
-      color: #fff;
+      background: black;
+      font-family: 'Arial Black', sans-serif;
+      color: white;
       overflow-x: hidden;
     }
 
     header img {
       width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .container {
-      padding: 30px;
-    }
-
-    .main-text {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      position: relative;
-    }
-
-    .izquierda {
-      max-width: 55%;
-    }
-
-    .derecha {
-      max-width: 40%;
-      text-align: right;
+      max-height: 200px;
+      object-fit: cover;
     }
 
     h1 {
-      font-size: 4rem;
-      color: #ffcc00;
-      text-transform: uppercase;
-      margin-bottom: 0;
+      font-size: 3em;
+      text-align: center;
+      margin: 30px 0 10px;
+      text-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
     }
 
-    .cancion-title {
-      font-size: 3rem;
-      color: #ffcc00;
-      background-color: #222;
-      padding: 10px 20px;
-      border-radius: 8px;
-      transition: transform 0.3s ease, background-color 0.3s ease;
+    .roberto {
+      font-size: 1.2em;
+      text-align: right;
+      margin: 10px 30px;
+      color: #f55;
+      text-shadow: 0 0 10px #f00;
+    }
+
+    .cancion-title, .video-title {
+      width: fit-content;
+      margin: 40px auto;
+      padding: 20px 40px;
+      background: linear-gradient(45deg, #ff0080, #7928ca);
+      border-radius: 20px;
       cursor: pointer;
-      display: inline-block;
-      margin-top: 40px;
+      font-size: 2em;
+      box-shadow: 0 0 20px #ff0080;
+      transition: transform 0.3s ease;
     }
 
-    .cancion-title:hover {
+    .cancion-title:hover, .video-title:hover {
       transform: scale(1.1);
-      background-color: #ff6699;
     }
 
-    .audio-player {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-    }
-
-    .audio-player.active {
-      max-height: 100px;
-    }
-
-    audio {
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .video-section {
-      margin-top: 50px;
-      max-width: 80%;
-      margin-left: auto;
-      margin-right: auto;
+    .audio-player, .video-player {
+      text-align: center;
+      margin: 20px 0;
       display: none;
     }
 
-    .video-section.active {
+    .audio-player.active, .video-player.active {
       display: block;
     }
 
-    video {
-      width: 100%;
+    audio {
+      width: 80%;
       max-width: 600px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #000;
     }
 
-    /* Canvas para el espectro de audio */
-    #audio-spectrogram {
+    video {
+      width: 80%;
+      max-width: 800px;
+      border-radius: 20px;
+      margin: 20px auto;
+      display: block;
+      box-shadow: 0 0 30px #0ff;
+    }
+
+    canvas {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100vh;
       z-index: -1;
     }
   </style>
 </head>
 <body>
 
-  <!-- Espectro de audio en canvas -->
-  <canvas id="audio-spectrogram"></canvas>
+  <canvas id="visualizer"></canvas>
 
-  <!-- Banner estilo canal de YouTube -->
   <header>
-    <img src="Corrido.png" alt="Banner">
+    <img src="Corrido.png" alt="Banner Corrido" />
   </header>
 
-  <div class="container">
-    <div class="main-text">
-      <div class="izquierda">
-        <h1>Somos Chuchitos con Flow</h1>
-        <p>Dylan, Steven, Diego, Alejandro, Nelson, Salvador y el mero Pilli</p>
-        <p><strong>Somos la mera verga.</strong></p>
+  <h1>Somos Chuchitos con Flow</h1>
+  <h2 style="text-align: center;">Dylan, Steven, Diego, Alejandro, Nelson, Salvador y el mero Pilli somos la mera verga</h2>
 
-        <!-- Título de la canción con cuadro -->
-        <div class="cancion-title" onclick="toggleAudio()">🎶 Porno Corrido</div>
-        <div id="audioPlayer" class="audio-player">
-          <audio id="audio" controls>
-            <source src="porno-corrido.mp3" type="audio/mpeg">
-            Tu navegador no soporta el audio.
-          </audio>
-        </div>
-      </div>
-
-      <!-- Texto para Roberto -->
-      <div class="derecha">
-        <p>Esta página fue creada con el propósito de</p>
-        <p><strong>mandar a la verga a Roberto</strong></p>
-        <p>por robar novias 😤</p>
-        <p>¿Qué pedo XDDD</p>
-
-        <button onclick="toggleVideo()">Ver video</button>
-      </div>
-    </div>
-
-    <!-- Video debajo -->
-    <div class="video-section" id="videoSection">
-      <video src="0506.mp4" controls autoplay muted loop></video>
-    </div>
-
+  <div class="roberto">
+    Esta página fue creada con el propósito de mandar a la verga a Roberto por robar novias 😎
   </div>
 
+  <!-- Botón para mostrar reproductor de la canción -->
+  <div class="cancion-title" onclick="toggleAudio()">🎶 Porno Corrido</div>
+  <div id="audioPlayer" class="audio-player">
+    <audio id="audio" controls>
+      <source src="porno-corrido.mp3" type="audio/mpeg">
+      Tu navegador no soporta el audio.
+    </audio>
+  </div>
+
+  <!-- Botón para mostrar video -->
+  <div class="video-title" onclick="toggleVideo()">📹 Ver Video</div>
+  <div id="videoPlayer" class="video-player">
+    <video controls>
+      <source src="0506.mp4" type="video/mp4">
+      Tu navegador no soporta el video.
+    </video>
+  </div>
+
+  <!-- Script para mostrar reproductores -->
   <script>
-    // Toggle del reproductor de audio
     function toggleAudio() {
       const audioDiv = document.getElementById("audioPlayer");
+      const audio = document.getElementById("audio");
       audioDiv.classList.toggle("active");
-    }
-
-    // Toggle del video
-    function toggleVideo() {
-      const videoSection = document.getElementById("videoSection");
-      videoSection.classList.toggle("active");
-    }
-
-    // Configuración para el espectro de audio
-    const canvas = document.getElementById('audio-spectrogram');
-    const ctx = canvas.getContext('2d');
-    const audioElement = document.getElementById('audio');
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const analyser = audioContext.createAnalyser();
-    analyser.fftSize = 256; // El tamaño del análisis
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-
-    // Asignar la fuente de audio
-    const source = audioContext.createMediaElementSource(audioElement);
-    source.connect(analyser);
-    analyser.connect(audioContext.destination);
-
-    // Configurar el tamaño del canvas
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    // Función para dibujar el espectro de audio
-    function draw() {
-      requestAnimationFrame(draw);
-
-      analyser.getByteFrequencyData(dataArray);
-
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      const barWidth = (canvas.width / bufferLength) * 2.5;
-      let barHeight;
-      let x = 0;
-
-      for (let i = 0; i < bufferLength; i++) {
-        barHeight = dataArray[i];
-
-        ctx.fillStyle = 'rgb(' + (barHeight + 100) + ',50,50)';
-        ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-
-        x += barWidth + 1;
+      if (audioDiv.classList.contains("active")) {
+        audio.play();
+      } else {
+        audio.pause();
       }
     }
 
-    // Iniciar el análisis y el dibujo del espectro
-    audioElement.onplay = function () {
-      audioContext.resume().then(() => {
-        draw();
-      });
-    };
-
-    // Control de tamaño al redimensionar la ventana
-    window.onresize = function () {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+    function toggleVideo() {
+      const videoDiv = document.getElementById("videoPlayer");
+      videoDiv.classList.toggle("active");
+    }
   </script>
 
+  <!-- Visualizador tipo espectro -->
+  <script>
+    const canvas = document.getElementById("visualizer");
+    const ctx = canvas.getContext("2d");
+    let audioCtx, analyser, source, bufferLength, dataArray;
+
+    function setupVisualizer() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      analyser = audioCtx.createAnalyser();
+      const audio = document.getElementById("audio");
+      source = audioCtx.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      analyser.fftSize = 256;
+      bufferLength = analyser.frequencyBinCount;
+      dataArray = new Uint8Array(bufferLength);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        analyser.getByteFrequencyData(dataArray);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const barWidth = (canvas.width / bufferLength) * 2.5;
+        let barHeight;
+        let x = 0;
+        for (let i = 0; i < bufferLength; i++) {
+          barHeight = dataArray[i] * 1.5;
+          ctx.fillStyle = `rgb(${barHeight+100},50,150)`;
+          ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+          x += barWidth + 1;
+        }
+      }
+      animate();
+    }
+
+    document.getElementById("audio").addEventListener("play", () => {
+      if (!audioCtx) setupVisualizer();
+    });
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
