@@ -36,19 +36,25 @@
       text-align: right;
     }
 
+    /* Estilo del nombre de la canción con cuadro */
     .cancion-title {
       margin-top: 40px;
       font-size: 2.5rem;
       color: #ffcc00;
-      transition: transform 0.3s ease;
+      background-color: #222;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
       cursor: pointer;
+      display: inline-block;
     }
 
     .cancion-title:hover {
       transform: scale(1.1);
-      color: #ff6699;
+      background-color: #ff6699;
     }
 
+    /* Reproductor de audio desplegable */
     .audio-player {
       max-height: 0;
       overflow: hidden;
@@ -64,12 +70,17 @@
       margin-top: 10px;
     }
 
+    /* Estilo del video más pequeño y debajo de texto de Roberto */
     .video-section {
       margin-top: 50px;
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     video {
       width: 100%;
+      max-width: 600px; /* Ajusta el tamaño del video */
       border-radius: 10px;
       box-shadow: 0 0 15px #000;
     }
@@ -91,7 +102,7 @@
         <p>Dylan, Steven, Diego, Alejandro, Nelson, Salvador y el mero Pilli</p>
         <p><strong>Somos la mera verga.</strong></p>
 
-        <!-- 🎵 Canción con animación -->
+        <!-- 🎵 Canción con animación y cuadro -->
         <div class="cancion-title" onclick="toggleAudio()">🎶 Porno Corrido</div>
         <div id="audioPlayer" class="audio-player">
           <audio controls>
@@ -110,7 +121,7 @@
       </div>
     </div>
 
-    <!-- 🎬 Video abajo -->
+    <!-- 🎬 Video abajo (más pequeño) -->
     <div class="video-section">
       <video src="0506.mp4" controls autoplay muted loop></video>
     </div>
