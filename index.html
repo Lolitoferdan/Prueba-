@@ -9,7 +9,6 @@
   <link rel="icon" href="https://github.com/Lolitoferdan/Prueba-/raw/main/pene.png" type="image/png">
 
   <style>
-    /* Fondo de espectro de audio */
     body {
       margin: 0;
       background-color: #111;
@@ -44,7 +43,6 @@
       text-align: right;
     }
 
-    /* Estilo para el título grande */
     h1 {
       font-size: 4rem;
       color: #ffcc00;
@@ -69,7 +67,6 @@
       background-color: #ff6699;
     }
 
-    /* Reproductor de audio desplegable */
     .audio-player {
       max-height: 0;
       overflow: hidden;
@@ -85,7 +82,6 @@
       margin-top: 10px;
     }
 
-    /* Video interactivo */
     .video-section {
       margin-top: 50px;
       max-width: 80%;
@@ -105,39 +101,35 @@
       box-shadow: 0 0 15px #000;
     }
 
-    /* Fondo con espectro de audio (estático por ahora, lo hacemos después con JS) */
+    /* Canvas para el espectro de audio */
     #audio-spectrogram {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.5);
       z-index: -1;
-      display: block;
     }
   </style>
 </head>
 <body>
 
-  <!-- Espectro de audio (se va a manejar con JS después) -->
-  <div id="audio-spectrogram"></div>
+  <!-- Espectro de audio en canvas -->
+  <canvas id="audio-spectrogram"></canvas>
 
-  <!-- 🖼️ Banner estilo canal de YouTube -->
+  <!-- Banner estilo canal de YouTube -->
   <header>
     <img src="Corrido.png" alt="Banner">
   </header>
 
   <div class="container">
-
-    <!-- 🧠 Texto principal -->
     <div class="main-text">
       <div class="izquierda">
         <h1>Somos Chuchitos con Flow</h1>
         <p>Dylan, Steven, Diego, Alejandro, Nelson, Salvador y el mero Pilli</p>
         <p><strong>Somos la mera verga.</strong></p>
 
-        <!-- 🎵 Canción con animación y cuadro -->
+        <!-- Título de la canción con cuadro -->
         <div class="cancion-title" onclick="toggleAudio()">🎶 Porno Corrido</div>
         <div id="audioPlayer" class="audio-player">
           <audio id="audio" controls>
@@ -147,19 +139,18 @@
         </div>
       </div>
 
-      <!-- 😤 Texto para Roberto -->
+      <!-- Texto para Roberto -->
       <div class="derecha">
         <p>Esta página fue creada con el propósito de</p>
         <p><strong>mandar a la verga a Roberto</strong></p>
         <p>por robar novias 😤</p>
         <p>¿Qué pedo XDDD</p>
 
-        <!-- Botón para mostrar el video -->
         <button onclick="toggleVideo()">Ver video</button>
       </div>
     </div>
 
-    <!-- 🎬 Video abajo (más pequeño) -->
+    <!-- Video debajo -->
     <div class="video-section" id="videoSection">
       <video src="0506.mp4" controls autoplay muted loop></video>
     </div>
@@ -179,18 +170,59 @@
       videoSection.classList.toggle("active");
     }
 
-    // Generación de espectro de audio
+    // Configuración para el espectro de audio
+    const canvas = document.getElementById('audio-spectrogram');
+    const ctx = canvas.getContext('2d');
     const audioElement = document.getElementById('audio');
-    const spectrogram = document.getElementById('audio-spectrogram');
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioContext.createAnalyser();
+    analyser.fftSize = 256; // El tamaño del análisis
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
 
-    audioElement.onplay = () => {
-      // Aquí agregaríamos el espectro de audio que reaccione
-      spectrogram.style.background = "linear-gradient(to right, #ff6699, #ffcc00, #00ccff)";
+    // Asignar la fuente de audio
+    const source = audioContext.createMediaElementSource(audioElement);
+    source.connect(analyser);
+    analyser.connect(audioContext.destination);
+
+    // Configurar el tamaño del canvas
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Función para dibujar el espectro de audio
+    function draw() {
+      requestAnimationFrame(draw);
+
+      analyser.getByteFrequencyData(dataArray);
+
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const barWidth = (canvas.width / bufferLength) * 2.5;
+      let barHeight;
+      let x = 0;
+
+      for (let i = 0; i < bufferLength; i++) {
+        barHeight = dataArray[i];
+
+        ctx.fillStyle = 'rgb(' + (barHeight + 100) + ',50,50)';
+        ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+        x += barWidth + 1;
+      }
+    }
+
+    // Iniciar el análisis y el dibujo del espectro
+    audioElement.onplay = function () {
+      audioContext.resume().then(() => {
+        draw();
+      });
     };
 
-    audioElement.onpause = () => {
-      // Espectro de fondo cuando el audio está en pausa
-      spectrogram.style.background = "rgba(0, 0, 0, 0.5)";
+    // Control de tamaño al redimensionar la ventana
+    window.onresize = function () {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
   </script>
 
